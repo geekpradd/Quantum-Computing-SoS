@@ -1,11 +1,11 @@
 \section{Mathematical Preliminaries}
 
-We assume that the reader is familiar with basic linear algebra that is covered during the first year. As our treatment of Quantum Computation heavily uses this, we will summarise some key theorems and notations that we will be using.
+We assume that the reader is familiar with basic linear algebra that is covered during the first year. As our treatment of Quantum Computation heavily uses this, we will summarise some key theorems and notations that we will be using. The reader is free to skip this section as it merely summarises the mathematical tools that we will use. Also note that the following section is very direct and rarely provides any motivation behind the definitions and proofs to keep it concise and simply provides a list of the preliminaries. Readers are advised to refer to various references of linear algebra to get a better understanding.
 
 \subsection{Vectors and Vector Spaces}
-The most important structure in linear algebra is a vector which we will represent as $\ket{\psi}$. This vector resides in a vector space that satisfies some axioms that give this structure it's core defining properties. This is famously known as the \textit{bra-ket} notation and the $\ket{.}$ is used to represent a vector. The same vector in the vector space $\mathbf{C}^{n}$ is conveniently represented as a column vector.
+The most important structure in linear algebra is a vector which we will represent as $\ket{\psi}$. This vector resides in a vector space that satisfies some axioms that give this structure it's core defining properties. This is famously known as the \textit{bra-ket} notation and the $\ket{.}$ is used to represent a vector. The same vector in the vector space $\mathbb{C}^{n}$ is conveniently represented as a column vector.
 
-We will be generally working in the vector space $\mathbf{C}^{n}$ over the field $\mathbf{C}$.
+We will be generally working in the vector space $\mathbb{C}^{n}$ over the field $\mathbb{C}$.
 A set of vectors $\ket{\psi_{1}}, \ket{\psi_{2}} \cdots \ket{\psi_{n}}$ is said to be \textit{linearly-independent} if for any set of coefficients ${a_i}$, 
 $$\sum_{i=1}^{n} a_i\ket{\psi_{i}} = 0 \implies a_i = 0   \forall   1 \leq i \leq n$$
 A set of vectors ${\ket{\psi_{i}}}$ is said to be a spanning set of a vector space $\textbf{W}$ if any vector in $\textbf{W}$ can be represented as a linear combination of that set. Note that such a set may be non-finite however we will be dealing with finite dimensional vector spaces only. If this set is linearly independent then this set is called a \textit{basis} of that vector space. It is left as an exercise to show that the cardinality of all bases are same and this value is termed as the \textit{dimension} of that vector space.
@@ -15,16 +15,16 @@ A linear operator $A$ from vector space \textbf{V} to \textbf{W} is a function m
 $$ A(\sum_{i} a_i \ket{\psi_{i}}) = \sum_{i} a_{i}A\ket{\psi_{i}} $$ 
 We can then define compositions of operators, $BA$ as function that first operates $A$ and then operates $B$. 
 
-It is easy to see that matrix multiplication is a linear operator. Conversely any linear operator has a matrix representation. To see this, let $A: V -> W$ be a linear operator. Let $\ket{v_{i}}$ be an ordered basis (basis formed by fixing order of it's elements, in this case by enforcing an order restriction on $\ket{v_{i}}$.) of $V$ and $\ket{w_{j}}$ be an ordered basis of $W$.
+It is easy to see that matrix multiplication is a linear operator. Conversely any linear operator has a matrix representation. To see this, let $A: V \to W$ be a linear operator. Let $\ket{v_{i}}$ be an ordered basis (basis formed by fixing order of it's elements, in this case by enforcing an order restriction on $\ket{v_{i}}$.) of $V$ and $\ket{w_{j}}$ be an ordered basis of $W$.
 
-Then there exists complex numbers $A_{i,j}$ such that: $$A\ket{v_{i}} = \sum_{j} A_{i,j}\ket{w_{j}}$$.
+Then there exists complex numbers $A_{i,j}$ such that: $$A\ket{v_{i}} = \sum_{j} A_{i,j}\ket{w_{j}}$$
 If we represent any vector in $V$ by it's coordinate vector representation, that is form a column vector whose elements with respect to an ordered basis are the scalar coefficients along the basis elements  and multiply it by the matrix formed by $A_{i,j}$ we get the coordinate vector representation of the output vector in the ordered basis $\ket{w_{j}}$.
 
 \subsection{Inner Products}
 An inner product of a vector space \textbf{V} is defined as a function from $\textbf{V} \cross \textbf{V}$ to $\textbf{C}$. We will denote the inner product of $\ket{v}$ and $\ket{w}$ as $(\ket{v}, \ket{w})$ or as $\braket{v}{w}$. The inner product satisfies the following properties:
 \begin{enumerate}
     \item $\braket{v}{w} = ({\braket{w}{v}})^{*}$
-    \item $\braket{v}{\sum_{j} a_{j}w_{j}} = \sum_{j} a_{j} \braket{v}{w_{j}}$
+    \item $\braket{v}{\sum_{j} a_{j} \ket{w_{j}}} = \sum_{j} a_{j} \braket{v}{w_{j}}$
     \item $\braket{v}{v} \geq 0 $ with equality \textit{iff} $v=0$
 \end{enumerate}
 We can now define the \textit{length} or \textit{norm} of a vector 
@@ -34,3 +34,131 @@ We now define an \textit{orthonormal} basis as a basis $\ket{v_{i}}$ whose eleme
 It can be proven that every finite dimensional vector space has an orthonormal basis. This is left as an exercise. The procedure for determining this orthonormal set from any basis is termed as the \textit{Gram-Schmidt} orthogonalisation process.
 
 
+This leads to a simple representation of the inner products of two vectors in matrix form. Let $\ket{w} = \sum_i w_i \ket{i}$ and $\ket{v} = \ket{v} = \sum_j v_j \ket{j} $ be two vectors written with the same orthogonal basis.
+Then $\braket{w}{v} = (\sum_i w_i \ket{i}, \sum_j v_j \ket{j}) = \sum_i w_{i}^*v_i  $ which we can nicely write in matrix form as
+$$ \begin{bmatrix} v_1^* & v_2^* & \cdots & v_n^* \end{bmatrix} \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}$$
+
+We now introduce the outer product notation. Take two vectors $\ket{w} $ and $\ket{v}$ belonging to inner product spaces. Define the outer product between them to be the linear operator $\ket{w}\bra{v}$ which operates on $\ket{v^'}$ belonging to the same vector space as $\ket{v}$ yielding:
+$$ (\ket{w}\bra{v})\ket{v^'} = \braket{v}{v^'}\ket{w} $$
+One use of this can be seen as follows:
+
+Let $\ket{i}$ be an orthonormal basis of a vector space $\textbf{V}$. Then for any vector $\ket{v}$ in this vector space, it is easy to see that 
+$$(\sum_i \ket{i}\bra{i}) \ket{v} = \ket{v}$$
+which in turn implies that $$\sum_i \ket{i}\bra{i}) = I_v $$
+This is termed as the completeness relation.
+
+Using this we can easily get the matrix representation of an operator $A: \textbf{V} \to \textbf{W}$. Let $\ket{v_i}$ be an orthonormal basis for $\textbf{V}$ and $\ket{w_j}$ be an orthonormal basis for $\textbf{W}$
+$$A = I_{W}AI_{V} = \sum_{i, j} \ket{w_j}\bra{w_j}A\ket{v_i}\bra{v_i}$$
+The terms $\bra{w_j}A\ket{v_i}$ are nothing but the entries of the matrix corresponding to this transformation written in coordinate vector form.
+
+\subsection{Eigenvalues and Eigenvectors}
+An eigenvector for a linear operator $A$ is a non-zero vector $\ket{v}$ such that $A\ket{v} = v\ket{v}$ for some complex number $v$. This number is called the eigenvalue corresponding to this eigenvector and we will refer to both the eigenvalue and the eigenvalue by the same letter.
+
+A sufficient and necessary condition for a number $\lambda$ to be an eigenvalue is $$det|A-\lambda I| = 0$$
+We will term the subspace spanned by eigenvectors corresponding to the same eigenvalue as the eigenspace corresponding to that eigenvalue.
+Now we introduce diagonalizable operators. An operator is said to be diagonalizable on a vector space if there exists an orthonormal basis composed of eigenvectors of that operator. It is left as an exercise to show that such an operator $A$ can be represented as:
+$$ A = \sum_i \lambda_i \ket{i}\bra{i} $$ where $\ket{i}$ corresponds to the orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues.
+We will now look at some conditions under which operators are diagonalizable. This is of importance to us as we will be using the diagonal representation of the operator many times later on.
+
+\subsection{Adjoints and Hilbert Spaces}
+
+For any linear operator $A$ it can be proven that there is a unique linear operator $A^{\dagger}$ satisfying 
+$$ (\ket{w}, A\ket{v}) = (A^{\dagger}\ket{w}, \ket{v})$$
+This operator is termed as the adjoint of $A$.
+It can be shown that the matrix representation of $A^\dagger$ is obtained by taking the complex conjugate and then the transpose of $A$ or $A^\dagger = (A^*)^T$
+
+\begin{definition}
+An operator is said to be \textbf{Hermitian} if $A^\dagger = A$.
+\end{definition}
+We proceed to show an example of an useful hermitian operator, the Projector.
+Let $\textbf{W}$ be a d dimensional subspace of $\textbf{V}$ which is k dimensional. Let $\ket{v_1} \cdots \ket{v_d}$ be an orthonormal basis of $\textbf{W}$. By Gram Schmidt process we can extend this to an orthonormal basis of $\textbf{V}$.
+The Projector $P: \textbf{V} \rightarrow \textbf{W}$ is defined as:
+$$P = \sum_{i=1}^{d} \ket{v_i}\bra{v_i}$$
+Informally this projector projects vectors from $\textbf{V}$ to $\textbf{W}$ as it only leaves those components of the vector that are along the basis vectors which are in $\textbf{W}$. We leave some trivial exercises corresponding to the Projector below that can be done by following the definitions.
+
+\begin{exercise}
+Prove that $P$ is Hermitian
+\end{exercise}
+\begin{exercise}
+Prove that $P^2 = P$ and thus $P^\dagger P = P$
+\end{exercise}
+\begin{definition}
+An operator is $A$ said to be \textbf{normal} if $A^\dagger A  = AA^\dagger$.
+\end{definition}
+The following theorem is incredibly useful and we omit it's proof as it is rather involved:
+\begin{theorem}
+\textbf{Spectral Theorem:} An operator A is diagonalizable if and only if it is normal.
+\end{theorem}
+
+Now we talk about a special type of normal operators, Unitary operators. These operators are of particular interest to us as all single quantum gates can be represented as unitary operators. 
+\begin{definition}
+An operator is $A$ said to be \textbf{unitary} if $A^\dagger A  = I$.
+\end{definition}
+
+A special class of hermitian operators is of particular interest to us. These operators called Positive operators are useful as they come up in the polar and singular decompositions which we will discuss shortly.
+\begin{definition}
+An operator is $A$ said to be \textbf{positive} if $(\ket{v}, A\ket{v}) \in \mathbb{R}^{+}$ for all $\ket{v}$
+\end{definition}
+
+Please go through the following exercises related  to positive operators.
+\begin{exercise}
+Prove that for any operator $A$, $AA^\dagger$ is positive.
+\end{exercise}
+\begin{exercise}
+Prove that any positive operator is necessarily hermitian.
+\end{exercise}
+\begin{solution}
+Let  $A$ be a positive operator. Observe that we can write  $A$ as:
+$$ A = \frac{A+A^\dagger}{2} + i\frac{A-A^\dagger}{2i}$$
+Observe that $\frac{A+A^\dagger}{2}$ and $\frac{A-A^\dagger}{2i}$ are both hermitian operators. We will call them $B$ and $C$ from now on.
+
+$$(\ket{v}, A\ket{v}) = (\ket{v}, B\ket{v}) + i(\ket{v}, C\ket{v})$$
+Observe that for any hermitian operator $B$, 
+$$ (\ket{v}, B\ket{v}) \in \mathbb{R}$$
+Thus it follows that $ (\ket{v}, C\ket{v}) = 0$ for all $\ket{v}$ which implies $C = 0$. Thus $A = B$ and so $A$ is hermitian.
+\end{solution}
+
+\subsection{Operator Functions}
+It becomes useful for us to define functions on operators that are normal. Formally if $A$ is a normal operator and it's diagonal representation is as follows:
+$$ A = \sum_i v_i \ket{v_i}\bra{v_i}$$ 
+then we define $$f(A) = \sum f(v_i) \ket{v_i}\bra{v_i}$$
+It is easy to see that $f(A)$ is uniquely determined which allows us to define things like square roots of positive operators, exponentials of normal operators etc.
+
+\begin{exercise}
+If $A$ is a normal operator satisfying $A^2 = I$ then prove that 
+$$ \exp(i\theta A) = \cos{\theta}I + i\sin{\theta}A$$
+\end{exercise}
+\begin{solution}
+Observe that the possible eigenvalues are $1$ and $-1$. Let $\ket{v_j}$ be an orthonormal basis of the eigenspace corresponding to the eigenvalue $1$ and $\ket{w_k}$ be the orthonormal basis for the eigenspace corresponding to $-1$. Then, 
+$$ A = \sum_j \ket{v_j}\bra{v_j} - \sum_k \ket{w_k}\bra{w_k} $$
+From the definition of the exponential for normal matrices,
+$$\exp{i\theta A} = \sum_j \exp{i\theta }\ket{v_j}\bra{v_j} + \sum_k \exp{-i\theta}\ket{w_k}\bra{w_k}$$ 
+$$ = \cos{\theta}(  \sum_j \ket{v_j}\bra{v_j} + \sum_k \ket{w_k}\bra{w_k}) + i\sin{\theta}( \sum_j \ket{v_j}\bra{v_j} - \sum_k \ket{w_k}\bra{w_k}) =  \cos{\theta}I + i\sin{\theta}A $$ where we have used the completeness relation and the diagonal decomposition of $A$
+\end{solution}
+We briefly mention that the notion of trace for a matrix can be extended for operators. This is because the trace satisfies
+$$ tr(AB) = tr(BA) $$ for matrices A, B.
+Suppose $A^{'}$ is one matrix representation of $A$. Then it is related to another matrix representation by $A^{''}$ by 
+$$A^{'} = PA^{''}P^{-1}$$ for some change of basis matrix $P$.
+Clearly by the previous  result $tr(A^{'}) = tr(A^{''})$ and so trace of an operator is independent of it's matrix representation.
+
+\subsection{Polar and Singular Value Decompositions}
+We omit the proof of the Polar decomposition as it is rather involved. The singular value decomposition follows from the polar decomposition.
+\begin{theorem} \textbf{Polar Decomposition}
+For any linear operator $A$ on a vector space $\textbf{V}$ there exists unitary $U$ and positive $J, K$ such that
+$$A = UJ = KU$$ where
+$$J = \sqrt{A^\dagger A}, K = \sqrt{AA^\dagger}$$
+\end{theorem}
+
+\begin{theorem} \textbf{Singular Decomposition}
+For any square matrix $A$ there exists unitary matrices $M, N$ and diagonal matrix $D$ with positive entries such that
+$$A = MDN $$
+\end{theorem}
+\begin{proof}
+By the polar decomposition, there exists unitary $U$ and positive $J$ such that 
+$$ A = UJ $$
+As J is positive, it is diagonalisable, so $$J = T^\dagger DT$$ where the entries of D are the eigenvalues of $J$ which are positive and $T$ is unitary.
+Setting $M = UT^\dagger$ and $N = T$ completes the proof.
+\end{proof}
+
+We end the mathematical preliminaries at this stage and move onto the postulates of Quantum mechanics which will provide an axiomatic approach to quantum mechanics.
+\clearpage
