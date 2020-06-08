@@ -5,8 +5,11 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{physics}
 \usepackage{enumerate}
+\graphicspath{{images/}}
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \lhead{\sffamily{Quantum Computation}}
@@ -21,6 +24,7 @@
 \newtheorem{definition}{Definition}
 \numberwithin{definition}{section}
 \numberwithin{theorem}{section}
+\newtheorem{postulate}{Postulate}
 \newtheorem*{thesis}{Thesis}
 \newtheorem{exercise}{Exercise}
 \newtheorem*{example}{Example}
@@ -31,7 +35,7 @@
 \pagestyle{fancy}
 
 \setlength\parindent{0pt}
-\title{Quantum Computing and Quantum Information }
+\title{Quantum Computing and Quantum Information Theory}
 \author{Pradipta Parag Bora}
 \date{April 2020}
 
@@ -42,10 +46,15 @@
 \tableofcontents
 
 \section{Introduction}
-Through this Summer of Science report, We attempt to summarise everything we covered related to Quantum Computing and Quantum Information Theory. We will mainly follow the book \textbf{Quantum Computation and Quantum Information} by \textbf{Nielsen and Chuang}. We will begin by going through the mathematical preliminaries, including an introduction to the linear algebraic treatment of Quantum Mechanics through which we will explore Quantum Computation. Then we will move onto qubits, their representation and on the way we will study and go through various fascinating Quantum algorithms and their uses. Hopefully through this report one will be able to gain a decent understanding of Quantum Computation. 
+Through this Summer of Science report, we attempt to summarise everything we covered related to Quantum Computing and Quantum Information Theory. We will mainly follow the book \textbf{Quantum Computation and Quantum Information} by \textbf{Nielsen and Chuang}. We will begin by going through the mathematical preliminaries, including an introduction to the linear algebraic treatment of Quantum Mechanics through which we will explore Quantum Computation. Then we will move onto qubits, their representation and on the way we will study and go through various fascinating quantum algorithms and their uses. Hopefully through this report one will be able to gain a decent understanding of Quantum Computation. 
 
-The first two sections do not deal with quantum computation and quantum mechanics and instead provide a brief overview of the mathematics we will require and the basic ideas of computer science. We then move into the postulates of quantum mechanics and then we start with basic quantum circuits.
+The first two sections do not deal with quantum computation and quantum mechanics and instead provide a brief overview of the mathematics that we will require along with the basic ideas of computer science. We then move onto the postulates of quantum mechanics and then we start with basic quantum circuits.
 \input{mathbasics}
 \input{computerscience}
-
+\input{postulates}
+\input{singlequbit}
+\input{composite}
+\input{superdense}
+\input{teleportation}
+\input{deutsch}
 \end{document}

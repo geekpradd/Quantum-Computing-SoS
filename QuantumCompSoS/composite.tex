@@ -1,0 +1,95 @@
+\section{Composite Quantum Systems}
+In this section we will deal with making composite quantum state spaces out of elementary state spaces. This will be important for instance, when we deal with multiple qubits. We begin with tensor products which serve as the mathematical backbone behind composite systems.
+
+\subsection{Tensor Products}
+Suppose \textbf{A} and \textbf{B} are two vector spaces that are $n$ and $m$ dimensional. The tensor product of \textbf{A} and \textbf{B} is denoted as 
+$$ \textbf{A} \otimes \textbf{B}$$
+This is a vector space that is $nm$ dimensional whose basis elements are the tensor products of the basis elements of the individual vector spaces. An informal way to think of a tensor product is that it is just a placeholder where the individual vector spaces are kept along different dimensions. Suppose $\ket{v} \in \textbf{A}$ and $\ket{w} \in \textbf{B}$, then $$\ket{v} \otimes \ket{w} \in \textbf{A} \otimes \textbf{B}$$.
+
+The tensor product is a vector space and along with that it must satisfy the following properties:
+\begin{enumerate}
+    \item For scalar $c \in \mathbb{C}$ and $\ket{v} \in \textbf{A}, \ket{w} \in \textbf{B}$ $$c \left(\ket{v} \otimes \ket{w}\right) = c\ket{v}\otimes \ket{w} = \ket{v}\otimes c\ket{w}$$
+     \item For $\ket{v_1}, \ket{v_2}  \in \textbf{A}, \ket{w} \in \textbf{B}$ $$ \left(\ket{v_1} + \ket{v_2}\right) \otimes \ket{w} = \ket{v_1}\otimes \ket{w} + \ket{v_2}\otimes \ket{w}$$
+      \item For $\ket{v}  \in \textbf{A}, \ket{w_1}, \ket{w_2} \in \textbf{B}$ $$ \ket{v}  \otimes \left(\ket{w_1} + \ket{w_2}\right) = \ket{v}\otimes \ket{w_1} + \ket{v}\otimes \ket{w_2}$$
+\end{enumerate}
+
+\begin{exercise}
+Using the above axioms prove that if $\ket{i}$ is a basis of $\textbf{A}$ and $\ket{j}$ is a basis of $\textbf{B}$ then $\ket{i} \otimes \ket{j}$ is a basis of $\textbf{A} \otimes \textbf{B}$
+\end{exercise}
+
+Similarly we can talk about operators on this tensor space. If $M$ is a linear operator from $\textbf{A} \to \textbf{A}^{'}$ and $N$ is a linear operator from $\textbf{B} \to \textbf{B}^{'}$ then $M \otimes N$ is a linear operator from $\textbf{A} \otimes \textbf{B} \to \textbf{A}^{'} \otimes  \textbf{B}^{'}$ defined by 
+$$ \left(M \otimes N \right) \ket{i} \otimes \ket{j} = M\ket{i} \otimes N\ket{j}$$
+for $\ket{i} \otimes \ket{j} \in \textbf{A} \otimes \textbf{B}$. It is trivial to show using the above properties that the above operator is indeed linear. This is left as an exercise.
+
+We can also define an inner product on this vector space. Let $\textbf{A}$ be an inner product space and $\textbf{B}$ be an inner product space. Then we define an inner product on $\textbf{A} \otimes \textbf{B}$ by 
+$$ (\left \ket{v_1} \otimes \ket{w_1}, \ket{v_2} \otimes \ket{w_2} \right) = (\left \ket{v_1} , \ket{v_2} \right) (\left \ket{w_1}, \ket{w_2} \right) $$ for $\ket{v_1}, \ket{v_2} \in \textbf{A}, \ket{w_1}, \ket{w_2} \in \textbf{B}$. This way two sets of orthonormal bases created an orthonormal base of their tensor product space.
+
+As an example suppose we have two qubits, then this composite system will have the bases $\ket{0} \otimes \ket{0}$, $\ket{0} \otimes \ket{1}$, $\ket{1} \otimes \ket{0}$ and $\ket{1} \otimes \ket{1}$. For convenience we can omit the middle symbol and write $\ket{0} \otimes \ket{0}$ as $\ket{00}$.
+
+There is a useful way of writing the matrix representations of the operator formed by the tensor product of two operators using Kronecker Products.
+Suppose $A$ is a linear operator whose matrix representation is given by $A_{ij}$ where $1 \leq i \leq n$ and $1 \leq j \leq m$. Similarly consider the matrix representation of another operator $B$ that was $p$ rows and $q$ columns.
+It can be shown that the matrix form of $A \otimes B$ is given by:
+$$ A \otimes B = \begin{bmatrix}A_{11}B & A_{12}B & \cdots & A_{1m}B \\ A_{21}B & A_{22}B & \cdots &A_{2m}B\\ \vdots & \vdots & \vdots & \vdots \\ A_{n1}B & A_{n2}B & \cdots & A_{nm}B \end{bmatrix} $$ where $A_{ij}B$ is a submatrix of the dimension of $B$ formed by scaling up $B$ with $A_{ij}$.
+
+We end by mentioning that the notation $\ket{\psi}^{\otimes k}$ is written in shorthand for $\ket{\psi} \otimes \ket{\psi} \cdots \otimes \ket{\psi}$
+with the tensor product being done $k$ times.
+
+\begin{exercise}
+Given that $\ket{\psi} = \left(\ket{0} + \ket{1} \right)/\sqrt{2}$ find $\ket{\psi}^{\otimes 3}$ using the Kronecker product (Hint: consider the Hadamard gate)
+\end{exercise}
+
+\subsection{Mixed Quantum States}
+
+We will now study quantum states that are mixed. Formally suppose you have a quantum system that can be in one of the states from the set $\{\ket{\psi_i}\}$ with probability $\{p_i\}$. Such a system is said to be in a mixed quantum state. It is important to understand that this is not the same as a superposition. Our system is in one of the states, we simply do not know which and it has a probability corresponding to that state.
+We then define the density operator corresponding to that state as 
+$$\rho = \sum_i p_i \ket{\psi}\bra{\psi} $$
+The above is useful because we can rewrite all of quantum mechanics in the form of density matrices only. For instance suppose we allow a unitary transformation $U$ to take place on our system. We can show that the final density matrix will be given by 
+$$ \rho^{'} = U\rho U^{'}$$
+Suppose an ensemble of measurement operators $\{ M_m \}$ are to used to measure an observable on the mixed state $\rho$. We can show that the probability of obtaining a result $m$ is given by 
+$$ p(m) = \tr(M_m^{\dagger}M_m \rho)$$
+\begin{exercise}
+Prove the above result. (Hint: use the measurement postulates, conditional probability, and the fact that $\tr(A\ket{\psi}\bra{\psi}) = \bra{\psi}A\ket{\psi}$)
+\end{exercise}
+
+After we obtain a measurement result $m$ it can be shown using conditional probability that the final mixed state of the system is,
+$$ \rho^{'} = \frac{M_m \rho M_m^{\dagger}}{\tr(M_m^{\dagger}M_m \rho)}$$
+
+We must note that if a system has only state in this ensemble (that is we are sure of which state it is in) then it  is stated to be in a pure state. The density matrix corresponding to this state $\ket{\psi}$ is then simply
+$$\rho = \ket{\psi}\bra{\psi}$$
+Density matrices for composite systems can be found in a similar manner by taking the tensor products of the individual density matrices. We also must note that given an ensemble of states there exists a unique density matrix but the reverse is not true. Given a density matrix there may be many ensembles that correspond to this density matrix. You can try to generate such a pair of states with the same density matrix for a simple density matrix.
+Below we state without proof the relation between two set of ensembles such that they have the same density matrix.
+\begin{theorem}
+Two set of ensembles $\{ \ket{\psi} \}$ and $\{ \ket{\phi} \}$ have the same density matrix if there exists a unitary matrix of complex numbers $U$ such that 
+$$\ket{\psi_i} = \sum_j u_{ij} \ket{\phi_j}$$ where add extra 0s to the smaller ensemble so that both the ensembles have the same number of elements.
+
+\end{theorem}
+
+\begin{exercise}
+Prove that the trace of the density matrix is one and that the density matrix is a positive operator
+\end{exercise}
+
+\begin{exercise}
+Prove that for any density matrix $\rho$ satisfies $\tr(\rho^{2}) \leq 1$ with equality if and only if $\rho$ corresponds to a pure state.
+\end{exercise}
+\begin{solution}
+Let the ensemble corresponding to $\rho$ be $\ket{\psi_i}$ with probabilities $p_i$. Then
+$$ \rho^{2} = \sum_{ij} p_i p_j \ket{\psi_i}\braket{\psi_i}{\psi_j}\bra{\psi_j} \\ = \sum_i p_i^{2} \ket{\psi_i}\bra{\psi_i}$$
+Clearly the trace of this is $\sum_i p_i^{2}$ which is $\leq 1$ by the cauchy schwartz inequality with equality if and only if $\rho$ corresponds to a pure state.
+
+\end{solution}
+
+It is of interest to us to find the density matrix corresponding to a subsystem of a quantum system. This is done using partial traces and we will go over it in brief.
+
+\subsection{Reduced Density Matrices}
+Suppose the composite system composed of two components $A, B$ has a density matrix given by $p_{AB}$. The density matrix of a component $A$ is given by 
+$$ \rho_A = \tr_{B}(\rho_{AB})$$ 
+where $\tr_{B}$ is the partial trace, where the trace operator is applied only on the second component. For instance when we expand the sum in $\rho_{AB}$ we get terms of the form 
+$$\ket{\psi_a}\bra{\psi_a} \otimes \ket{\psi_b}\bra{\psi_b}$$ The partial trace of this will be $$\tr_{B}(\ket{\psi_a}\bra{\psi_a} \otimes \ket{\psi_b}\bra{\psi_b}) = \ket{\psi_a}\bra{\psi_a} \tr(\ket{\psi_b}\bra{\psi_b}) \\ = \ket{\psi_a}\bra{\psi_a} $$
+We can see why this works as suppose the individual systems had density matrices $\rho_A$ and $\rho_B$ then $$\rho_{AB} = \rho_A \otimes \rho_B$$ which means that $$\tr_{B}(\rho_{AB}) = \rho_A \tr(\rho_B) = \rho_A$$ which has thus extracted the individual density matrix out.
+
+It is important to note that the density matrix alone is sufficient to determine not only the measurement statistics but also the state of the system with time. Density matrices thus provide an alternative to dealing with state vectors in quantum mechanics.
+
+At this stage we have covered most of the basic tools needed to study composite systems. Partial traces and the results of measurement operators on density matrices are useful when we deal with measurements on composite systems. We will now look at applications of the last few sections by studying how arbitrary quantum gates operating on multiple qubits can be formed from a few universal gates.
+
+With this we have mostly ended with the prerequisites for studying Quantum Computation and we will be using the toolset that we have developed so far for various applications of quantum mechanics in computation. We will begin with a relatively simpler application, super dense coding.
+\clearpage

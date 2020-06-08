@@ -1,1 +1,110 @@
 \section{Postulates of Quantum Mechanics}
+
+We aim to have a self sufficient understanding of Quantum Mechanics and in order to do so we will list the postulates of quantum mechanics in this section and see how they can be useful in our study of quantum computation.
+
+\subsection{The State Space}
+\begin{postulate}
+Associated to any isolated physical system is a complex vector space
+with inner product (that is, a Hilbert space) known as the state space of the system. The system is completely described by its state vector, which is a unit vector in the system’s state space.
+\end{postulate}
+
+This postulate states that any system can be described as a vector spanned by some basis elements. Knowing a basis for our vector space allows us to therefore express the entire system at any point of time in terms of these elements and the transformation of this representation with time is sufficient  for us to describe how the system evolves with time.
+
+It is imperative to note that this postulate merely states the existence and does not provide any knowledge about what this state space is. For this we need to develop additional quantum field theories that model different scenarios. 
+
+Let us take a simple example. We introduce the qubit at this point of time. Classical computers always process data in forms of the bits 0 and 1. But any bit at any point of time can either be 0 or 1. Quantum Computers however allow superposition of these bits.
+
+A Qubit can therefore be one of the possible states, that is an element of the state space. The basis elements of this state space are taken as 0 and 1, which we write in vector form as $\ket{0}$ and $\ket{1}$. 
+We can therefore write any qubit $\ket{\psi}$ as 
+$$\ket{\psi} = a\ket{0} + b\ket{1}$$
+The postulate dictates that $\ket{\psi}$ is a unit vector. This ensures that $|a|^2 + |b|^2 = 1$. This must hold even after any transformation is done on the current state vector.
+
+Note that our choice of using $\ket{0}$ and $\ket{1}$ as the basis is arbitary. We can use other bases as well. The basis we use is referred to as the computational basis.
+
+\subsection{Evolution of the System}
+\begin{postulate}
+The evolution of a closed quantum system is described by a unitary
+transformation. That is, the state $\ket{\psi_1}$ of the system at time $t_1$ is related to the
+state $\ket{\psi_2}$ of the system at time $t_2$ by a unitary operator U which depends only on the initial and final time.
+$$\ket{\psi_2} = U\ket{\psi_1}$$
+\end{postulate}
+
+In our study of quantum computation we will be using various gates. We can consider a gate as a machine that takes in a quantum state and churns out another at a later time. The above postulate thus allows us to model all gates in the form of unitary transformations. It however does not tell us which unitary operators can be used to describe evolution of a system.
+
+It turns out that for quantum gates on a single qubit any unitary operator can be used to describe evolution via a suitable quantum gate.
+We describe some gates here in brief. Consider a quantum NOT gate. This must take $\ket{0}$ to $\ket{1}$ and viceversa. This operator is simply:
+$$ X = \ket{0}\bra{1} + \ket{1}\bra{0}$$
+which in matrix form is simply
+$\begin{bmatrix}
+0 & 1 \\ 1 & 0
+\end{bmatrix}$ \\ \\ 
+Similarly we have the phase flip gate Z which takes keeps $\ket{0}$ the same and takes $\ket{1}$ to $-\ket{1}$.
+Another useful quantum gate is the Hadamard Gate,
+$$ H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1& -1 \end{bmatrix} $$
+
+\begin{exercise}
+Verify that the Hadamard Gate is indeed unitary and find it's eigenvectors and thus diagonalise it.
+\end{exercise}
+
+\subsection{Measurement}
+\begin{postulate}
+Quantum measurements are described by a collection $\ket{M_m}$ of measurement operators. These are operators acting on the state space of the system being measured. The index $m$ refers to the measurement outcomes that may occur in the experiment. If the state of the quantum system is $\ket{\psi}$ immediately before the measurement then the probability that result $m$ occurs is
+$$ p(m) = \bra{\psi}M_m^{\dagger}M_m\ket{\psi} $$
+After this measurement the new state vector of the system (given that we obtained $m$) is 
+$$ \frac{M_m\ket{\psi}}{\sqrt{\bra{\psi}M_m^{\dagger}M_m\ket{\psi}}} $$
+\end{postulate}
+
+These measurement operators must also satisfy the completeness relation as 
+$$ \sum_m p(m) = 1$$ which implies $$ \sum_m \bra{\psi}M_m^{\dagger}M_m\ket{\psi} = 1 \implies \sum_m M_m^{\dagger}M_m = I$$
+
+\begin{exercise}
+Define a set of Measurement operators that extract the coefficients along the computational basis.
+\end{exercise}
+
+This postulate fundamentally describes one of the major features of quantum mechanics, that measurement changes the system. After measuring the state vector collapses into another state.
+
+We now talk about a different way of talking about measurements, the projective measurement operators. Suppose that the act of measurement is denoted by an operator $M$ acting on our state space. Note that this can be done only when your system is closed, or when unitary dynamics can be applied to it (energy is conserved). The act of measurement may change this as external influence is applied.
+
+However assuming energy is conserved than correspondingly $M$ will be unitary and hence will have a spectral decomposition. Moreover as we will be measuring "real" values the eigenvalues will be real and thus $M$ will be hermitian.
+Let $m$ refer to the eigenvalues of this observable. Then 
+$$ M = \sum_m mP_m $$ 
+where $P_m$ is the projector onto the eigenspace corresponding to the eigenvalue $m$. The act of observing the observable $M$ will collapse the state vector into one of the eigenstates. Notice that this is similar to the previous postulates in the special case when our measurement operators are the projectors onto the eigenstates, as if $M_m = P_m$ then $$P_m = M_m^{\dagger}M_m$$
+Hence by the previous postulate the probability of getting a value $m$ is 
+$$p(m) = \bra{\psi}P_m\ket{\psi}$$ and the state after the measurement is $$\frac{P_{m}\ket{\psi}}{\sqrt{p(m}}$$ The average value of the measurement is then simply $$E(m) = \sum_m mp(m) \\ = \sum_m m\bra{\psi}P_m\ket{\psi} = \bra{\psi}M\ket{\psi}$$
+
+However projective measurements are not all type of measurements. It can be shown that projective measurements along with unitary transformations can account for all measurment operators. We can however make the math corresponding to postulate 3 simpler by invoking a mathematical tool called POVM measurements.
+\clearpage
+
+\subsection{POVM Measurement}
+
+Notice that in Projective measurement the measurement operators were the projectors themselves. As projectors satisifed $P^{\dagger}P = P$ the math corresponding to the probabilities becomes simple. Notice that the only place where we need $M_m$ is to get the state of the system after the measurement. If we do not need or care about this, we can define a new set of operators 
+$$E_m = M_m^{\dagger}M_m $$
+Then corresponding to $E_m$ there is an eigenvalue $m$ which could be obtained after the measurement. The probability simply becomes
+$$p(m) = \bra{\psi}E_m\ket{\psi}$$
+and the completeness relation implies 
+$$ \sum_m M_m^{\dagger}M_m = \sum_m E_m = I$$
+The set of operators $\{E_m\}$ is termed as \textit{POVM} and each $E_m$ is called a \textit{POVM} element. A POVM is sufficient to obtain the probabilities of each measurable value and makes it more elegant reducing the need for adjoints. We have shown that for every set of measurement operators there is a corresponding set of POVMs.
+
+\begin{exercise}
+Show that for every POVM there is a corresponding set of Measurement operators.
+\end{exercise}
+\begin{exercise}
+Show that projective measurement operators are a special case of POVMs
+\end{exercise}
+
+Note that POVMs and general measurement operators are more general than projective measurements as we do not comment on the nature of the measurement operators. However it can be proven using composite quantum systems that projective measurements along with unitary operators are sufficient to describe any general measurment. We reserve this proof and discussion for a later time.
+
+We briefly mention the final postulate which deals with composite quantum systems. We will revisit this later when we deal with tensor products and partial traces.
+
+\subsection{Composite Quantum Systems}
+\begin{postulate}
+The state space of a composite physical system is the tensor product
+of the state spaces of the component physical systems. If the state of the ith component is $\ket{\psi_i}$ and total we have $n$ components then the net state is given by 
+$$ \ket{\psi_1} \otimes \ket{\psi_2} \otimes \cdots \ket{\psi_n}$$
+\end{postulate}
+
+The symbol $\otimes$ is used for the tensor product. We will go through this later when we deal with composite quantum systems in the next section. Essentially tensor products are used to build composite systems out of individual hilbert spaces. Thus we can deal with quantum systems having multiple components like say 3 qubits simultaneously.
+
+We now proceed onto simple quantum circuits. We will start with the most simple case, a quantum gate operating on a single qubit. After we analyse this we will look into tensor products and partial traces in detail which would allow us to analyse multiple qubit gates properly.
+
+\clearpage
