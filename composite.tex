@@ -1,7 +1,7 @@
-\section{Composite Quantum Systems}
+\chapter{Composite Quantum Systems}
 In this section we will deal with making composite quantum state spaces out of elementary state spaces. This will be important for instance, when we deal with multiple qubits. We begin with tensor products which serve as the mathematical backbone behind composite systems.
 
-\subsection{Tensor Products}
+\section{Tensor Products}
 Suppose \textbf{A} and \textbf{B} are two vector spaces that are $n$ and $m$ dimensional. The tensor product of \textbf{A} and \textbf{B} is denoted as 
 $$ \textbf{A} \otimes \textbf{B}$$
 This is a vector space that is $nm$ dimensional whose basis elements are the tensor products of the basis elements of the individual vector spaces. An informal way to think of a tensor product is that it is just a placeholder where the individual vector spaces are kept along different dimensions. Suppose $\ket{v} \in \textbf{A}$ and $\ket{w} \in \textbf{B}$, then $$\ket{v} \otimes \ket{w} \in \textbf{A} \otimes \textbf{B}$$.
@@ -38,7 +38,7 @@ with the tensor product being done $k$ times.
 Given that $\ket{\psi} = \left(\ket{0} + \ket{1} \right)/\sqrt{2}$ find $\ket{\psi}^{\otimes 3}$ using the Kronecker product (Hint: consider the Hadamard gate)
 \end{exercise}
 
-\subsection{Mixed Quantum States}
+\section{Mixed Quantum States}
 
 We will now study quantum states that are mixed. Formally suppose you have a quantum system that can be in one of the states from the set $\{\ket{\psi_i}\}$ with probability $\{p_i\}$. Such a system is said to be in a mixed quantum state. It is important to understand that this is not the same as a superposition. Our system is in one of the states, we simply do not know which and it has a probability corresponding to that state.
 We then define the density operator corresponding to that state as 
@@ -80,7 +80,7 @@ Clearly the trace of this is $\sum_i p_i^{2}$ which is $\leq 1$ by the cauchy sc
 
 It is of interest to us to find the density matrix corresponding to a subsystem of a quantum system. This is done using partial traces and we will go over it in brief.
 
-\subsection{Reduced Density Matrices}
+\section{Reduced Density Matrices}
 Suppose the composite system composed of two components $A, B$ has a density matrix given by $p_{AB}$. The density matrix of a component $A$ is given by 
 $$ \rho_A = \tr_{B}(\rho_{AB})$$ 
 where $\tr_{B}$ is the partial trace, where the trace operator is applied only on the second component. For instance when we expand the sum in $\rho_{AB}$ we get terms of the form 
@@ -89,7 +89,6 @@ We can see why this works as suppose the individual systems had density matrices
 
 It is important to note that the density matrix alone is sufficient to determine not only the measurement statistics but also the state of the system with time. Density matrices thus provide an alternative to dealing with state vectors in quantum mechanics.
 
-At this stage we have covered most of the basic tools needed to study composite systems. Partial traces and the results of measurement operators on density matrices are useful when we deal with measurements on composite systems. We will now look at applications of the last few sections by studying how arbitrary quantum gates operating on multiple qubits can be formed from a few universal gates.
-
-With this we have mostly ended with the prerequisites for studying Quantum Computation and we will be using the toolset that we have developed so far for various applications of quantum mechanics in computation. We will begin with a relatively simpler application, super dense coding.
+At this stage we have covered most of the basic tools needed to study composite systems. Partial traces and the results of measurement operators on density matrices are useful when we deal with measurements on composite systems. 
+With this we have mostly ended with the prerequisites for studying Quantum Computation and we will be using the toolset that we have developed so far for various applications of quantum mechanics in computation. Before we got on with it let us quickly go through multi qubit gates which would be our main building blocks for implementing quantum algorithms.
 \clearpage

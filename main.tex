@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -18,6 +18,7 @@
 \cfoot{}
 \numberwithin{equation}{section}
 \theoremstyle{definition}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -41,20 +42,26 @@
 
 \begin{document}
 
-\maketitle
+\input{cover}
 
 \tableofcontents
 
-\section{Introduction}
-Through this Summer of Science report, we attempt to summarise everything we covered related to Quantum Computing and Quantum Information Theory. We will mainly follow the book \textbf{Quantum Computation and Quantum Information} by \textbf{Nielsen and Chuang}. We will begin by going through the mathematical preliminaries, including an introduction to the linear algebraic treatment of Quantum Mechanics through which we will explore Quantum Computation. Then we will move onto qubits, their representation and on the way we will study and go through various fascinating quantum algorithms and their uses. Hopefully through this report one will be able to gain a decent understanding of Quantum Computation. 
+\part{Preliminaries}
+\chapter{Introduction}
+Through this Summer of Science report, we attempt to summarise everything we covered related to quantum computing and quantum information theory. We will mainly follow the book \textbf{Quantum Computation and Quantum Information} by \textbf{Nielsen and Chuang}. We will begin by going through the mathematical preliminaries, including an introduction to the linear algebraic treatment of quantum mechanics through which we will explore quantum computation. Then we will move onto qubits, their representation and on the way we will study and go through various fascinating quantum algorithms and their uses. Hopefully through this report one will be able to gain a decent understanding of quantum computation. 
 
-The first two sections do not deal with quantum computation and quantum mechanics and instead provide a brief overview of the mathematics that we will require along with the basic ideas of computer science. We then move onto the postulates of quantum mechanics and then we start with basic quantum circuits.
+The first two sections do not deal with quantum computation and quantum mechanics and instead provide a brief overview of the mathematics that we will require along with the basic ideas of computer science. We then move onto the postulates of quantum mechanics and then we start with basic quantum circuits. Once we have built an understanding of the basics we will go through several quantum algorithms starting with relatively simple ones and ending with quantum fourier transform and quantum search.
+\clearpage
 \input{mathbasics}
 \input{computerscience}
 \input{postulates}
 \input{singlequbit}
 \input{composite}
+\input{multiqubit}
 \input{superdense}
 \input{teleportation}
 \input{deutsch}
+\input{qft}
+\input{search}
+\input{conclusion}
 \end{document}

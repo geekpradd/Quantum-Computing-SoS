@@ -1,8 +1,8 @@
-\section{Postulates of Quantum Mechanics}
+\chapter{Postulates of Quantum Mechanics}
 
 We aim to have a self sufficient understanding of Quantum Mechanics and in order to do so we will list the postulates of quantum mechanics in this section and see how they can be useful in our study of quantum computation.
 
-\subsection{The State Space}
+\section{The State Space}
 \begin{postulate}
 Associated to any isolated physical system is a complex vector space
 with inner product (that is, a Hilbert space) known as the state space of the system. The system is completely described by its state vector, which is a unit vector in the system’s state space.
@@ -14,14 +14,14 @@ It is imperative to note that this postulate merely states the existence and doe
 
 Let us take a simple example. We introduce the qubit at this point of time. Classical computers always process data in forms of the bits 0 and 1. But any bit at any point of time can either be 0 or 1. Quantum Computers however allow superposition of these bits.
 
-A Qubit can therefore be one of the possible states, that is an element of the state space. The basis elements of this state space are taken as 0 and 1, which we write in vector form as $\ket{0}$ and $\ket{1}$. 
+A qubit can therefore be one of the possible states, that is an element of the state space. The basis elements of this state space are taken as 0 and 1, which we write in vector form as $\ket{0}$ and $\ket{1}$. 
 We can therefore write any qubit $\ket{\psi}$ as 
 $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 The postulate dictates that $\ket{\psi}$ is a unit vector. This ensures that $|a|^2 + |b|^2 = 1$. This must hold even after any transformation is done on the current state vector.
 
 Note that our choice of using $\ket{0}$ and $\ket{1}$ as the basis is arbitary. We can use other bases as well. The basis we use is referred to as the computational basis.
 
-\subsection{Evolution of the System}
+\section{Evolution of the System}
 \begin{postulate}
 The evolution of a closed quantum system is described by a unitary
 transformation. That is, the state $\ket{\psi_1}$ of the system at time $t_1$ is related to the
@@ -46,7 +46,7 @@ $$ H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1& -1 \end{bmatrix} $$
 Verify that the Hadamard Gate is indeed unitary and find it's eigenvectors and thus diagonalise it.
 \end{exercise}
 
-\subsection{Measurement}
+\section{Measurement}
 \begin{postulate}
 Quantum measurements are described by a collection $\ket{M_m}$ of measurement operators. These are operators acting on the state space of the system being measured. The index $m$ refers to the measurement outcomes that may occur in the experiment. If the state of the quantum system is $\ket{\psi}$ immediately before the measurement then the probability that result $m$ occurs is
 $$ p(m) = \bra{\psi}M_m^{\dagger}M_m\ket{\psi} $$
@@ -73,9 +73,8 @@ Hence by the previous postulate the probability of getting a value $m$ is
 $$p(m) = \bra{\psi}P_m\ket{\psi}$$ and the state after the measurement is $$\frac{P_{m}\ket{\psi}}{\sqrt{p(m}}$$ The average value of the measurement is then simply $$E(m) = \sum_m mp(m) \\ = \sum_m m\bra{\psi}P_m\ket{\psi} = \bra{\psi}M\ket{\psi}$$
 
 However projective measurements are not all type of measurements. It can be shown that projective measurements along with unitary transformations can account for all measurment operators. We can however make the math corresponding to postulate 3 simpler by invoking a mathematical tool called POVM measurements.
-\clearpage
 
-\subsection{POVM Measurement}
+\section{POVM Measurement}
 
 Notice that in Projective measurement the measurement operators were the projectors themselves. As projectors satisifed $P^{\dagger}P = P$ the math corresponding to the probabilities becomes simple. Notice that the only place where we need $M_m$ is to get the state of the system after the measurement. If we do not need or care about this, we can define a new set of operators 
 $$E_m = M_m^{\dagger}M_m $$
@@ -96,7 +95,7 @@ Note that POVMs and general measurement operators are more general than projecti
 
 We briefly mention the final postulate which deals with composite quantum systems. We will revisit this later when we deal with tensor products and partial traces.
 
-\subsection{Composite Quantum Systems}
+\section{Composite Quantum Systems}
 \begin{postulate}
 The state space of a composite physical system is the tensor product
 of the state spaces of the component physical systems. If the state of the ith component is $\ket{\psi_i}$ and total we have $n$ components then the net state is given by 

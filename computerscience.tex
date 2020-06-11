@@ -1,7 +1,7 @@
-\section{Introduction to Computer Science}
+\chapter{Introduction to Computer Science}
 Our main motivation behind using quantum computation is to provide an improvement over the classical model of computation. In order to do so we must have a proper notion of how we compare two different models of computation. Many classically difficult to solve problems have in principle quantum algorithms that solve these problems with ease. For instance, the factorisation problem of finding the prime factors of a number $N$, takes exponentially more time classically than via the quantum Shor's algorithm. But how do we quantify which algorithm is better or efficient? We will deal with this at the end of this section. We begin by first briefly discussing a model of computation that is deemed to be universal, the Turing model. We then provide a circuit equivalent of the same which is more feasible to us. We then look into how we can compare algorithms and finally end this section by describing different classes of algorithms on the basis of their complexities.
 
-\subsection{Turing Machines}
+\section{Turing Machines}
 The field of computer science arose back in the 1930s when the pioneers of the field Alan Turing and Alonzo Church formalized the notion of an algorithm used to solve mathematical problems by providing a model of computation. Turing's model, called the Turing Machine provides an abstract notion of a machine, that in principle can solve all problems associated with an algorithmic process. We will discuss its construction now.
 
 A Turing machine contains four main elements:
@@ -19,6 +19,11 @@ Firstly let us see how the program of the machine is defined. Formally a \textit
 $$ \left( q_i, x, q_j, x^{'}, d \right)$$
 where $q_i$ is the current state in which the machine is supposed to be, $x$ is the value on the current square in the tape head, $q_j$ is the state the machine goes into after executing the current command, $x'$ is the value that the machine will write on the current square after this command is executed and $d$ is either $0, +1, -1$ where a value of $0$ instructs the machine to not move the tape head, +1 means move the pointer to the right and $-1$ means move the tape to the left. The only exception to this rule is when the current value on the tape is $s$ which would ignore the $-1$ instruction as we are at the beginning of the tape.
 \\The machine will obtain its current working condition by reading the value on the tape square and scan for the program line that has its current state and this value as the first two elements of the tuple. If such a line does not exist it automatically goes to $q_h$ and halts execution.
+\begin{figure}[htp]
+    \centering
+    \caption{Structure of a Turing Machine}
+    \includegraphics[width=\textwidth]{turing}
+\end{figure}
 \\ Now we will list an explicit program for computing $f(x)=1$.
 Consider the following program:
 \begin{enumerate}
@@ -53,16 +58,15 @@ Describe a Turing program to reverse a binary number provided to you as input in
 Another version of a turing machine is a probabilistic turing machine. This machine will transition from one state to another by randomly choosing a state from various possibilities. Note that a deterministic turing machine can in essence simulate a probabilistic machine by going through all possibilities (searching through the search space). Thus they both can compute the exact same class of functions. The probabilistic machine may be more efficient but right now we are only interested in knowing the differences in the set of possible functions computable by different computation models.
 
 Now we describe the circuit model of computation in brief.
-\clearpage
 
-\subsection{Circuit Model of Computation}
+\section{Circuit Model of Computation}
 The circuit model of computation is essentially the model we are most familiar with, wires and gates that compute binary functions. Taking multiple inputs we can actually compute all kinds of functions which are equivalent to those that can be simulated on a turing machine.  In general our circuits will have gates, which are blocks that compute functions of the form $f : \{0, 1 \}^{k} \to \{0, 1\}^{l}$. However we would like to reduce all our circuits to those made up of some universal blocks. There are a few gates called the universal gates in classical computation that can build up any gate. One such gate is the NAND gate which takes two binary inputs and computes their binary AND and then negates the result.
 
 There are other universal gates as well and some common gates like OR, AND, XOR which are self explanatory. Two other gates are the FANOUT and crossover gates. The FANOUT gate takes an input and copies it out. We will later see that the FANOUT gate has no quantum equivalent because of the \textit{no-cloning} theorem. The crossover gate takes two inputs and simply swaps them.
 
 Later on when we get into quantum circuits, we will show quantum equivalents of these gates and also look at universal quantum gates. It is important to note that quantum mechanics is reversible, infact all of quantum mechanics can be represented as unitary transformations which we will look into in the next section. As a result it is not possible to have irreversible gates in our quantum computational model. So a quantum variant of an AND gate is not possible as AND is irreversible which means that given the output of the AND gate we cannot determine what the inputs were. We reserve this discussion for later when we start dealing with quantum circuits.
 
-\subsection{Analysis of Computational Problems}
+\section{Analysis of Computational Problems}
 
 So far we have said that quantum computers provide a more efficient solution of various classical problems. How do we deem which algorithm is better? This section deals with that.
 
@@ -108,7 +112,12 @@ The merge function combines the two lists B and C which have half the number of 
 2. Using the above algorithm write the recursive definition for \textbf{TIME}(List A, Size N) in terms of N. Use this to compute the  time complexity of Merge Sort.
 \end{exercise}
 
-\subsection{Complexity Classes}
+\section{Complexity Classes}
+\begin{figure}[htp]
+    \centering
+    \caption{The various complexity classes}
+    \includegraphics[scale=0.24]{complexity}
+\end{figure}
 When we covered big-o notation to compare running times of different algorithms we found a way of quantifying the upper bound of the running time. Naturally it makes sense to now categorize different algorithms into different classes on the basis of their running time.
 
 We will start by classifying decision problems, that is problems that have a yes/no answer. These problems provide a lot of insight into the generic case of computable problems and so we stick to them for this report. For instance we may ask the question whether a  number $n$ is a prime or not. This is a decision problem as it has a pure yes/no answer.

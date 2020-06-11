@@ -1,4 +1,4 @@
-\section{Single Qubit Gates}
+\chapter{Single Qubit Gates}
 
 In this section we will deal with single qubit gates and different ways we can represent them.
 
@@ -9,12 +9,18 @@ This is because the gate can be thought of as an abstract machine that takes in 
 \begin{exercise}
 Mathematically prove that all single gate qubit operators have to be unitary by using the normalisation condition of qubit state vectors.
 \end{exercise}
+\begin{figure}[htp]
+    \centering
+    \caption{Bloch Representation of a Qubit}
+    \includegraphics[width=\textwidth]{bloch}
+\end{figure}
 
 We now introduce the bloch sphere notation for qubits. Observe that we can write any qubit as follows:
 $$\ket{\psi} = e^{ix}\left(\cos{\frac{\theta}{2}} + ie^{i\phi}\sin{\frac{\theta}{2}}\right)$$ where $$ 0 \leq x < 2\pi,   0 \leq \theta \leq \pi,   0\leq \phi <2\pi$$
 \\
 The global phase $e^{ix}$ is irrelevant as it is common to both. Observe that by neglecting this our state vector is parameterised by $\theta$ and $\phi$ and these values are precisely in the range of the spherical angular coordinates of a sphere of radius 1. Thus corresponding to every $\ket{\psi}\left(\theta, \phi \right)$ there exists a point on the unit sphere given by $(1, \theta, \phi)$ in spherical polar coordinates.
-This sphere is termed as the bloch sphere and the corresponding position vector the bloch vector.\\
+This sphere is termed as the bloch sphere and the corresponding position vector the bloch vector.
+
 It is interesting to note that any unitary transformation in the state space can be visualised to be a rotation of the bloch sphere about an axis. That is this mapping corresponds to a rotation of the bloch sphere (upto a global phase). You will prove this result later on.
 We first define some standard gates in their matrix forms. These gates are incredibly useful and are known as the pauli matrices.
 
@@ -57,7 +63,7 @@ Suppose $U$ is a unitary gate. Show that there exists unitary operators$A, B, C$
 
 We end this section by mentioning two other important gates that we will later use.
 The Hadamard gate was previously introduced and is given by 
-$$H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 & 1 \\ 1&-1 \end{bmatrix} $$.
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 & 1 \\ 1&-1 \end{bmatrix} $$
 The T gate (also known as the $\frac{\pi}{8}$ gate) is given by 
 $$ T = \exp(i\pi/8)\begin{bmatrix} \exp(-i\pi/8) & 0 \\ 0 & \exp(i\pi/8) \end{bmatrix}$$
 
